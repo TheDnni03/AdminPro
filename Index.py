@@ -9,9 +9,9 @@ def seleccionar_usuario(usuario):
     global usuario_seleccionado
     usuario_seleccionado = usuario
     if usuario == "Empleado":
-        subprocess.Popen(["python", "Empleado.py"])
+        subprocess.Popen(["python", "RegEmpleado.py"])
     elif usuario == "Encargado":
-        subprocess.Popen(["python", "Encargado.py"])
+        subprocess.Popen(["python", "RegEncargado.py"])
 
 # Crear la ventana principal
 ventana = tk.Tk()

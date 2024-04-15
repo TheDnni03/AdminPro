@@ -30,6 +30,7 @@ def verificar_usuario():
 # Crear la ventana
 ventana = tk.Tk()
 ventana.title("Verificar Usuario")
+ventana.geometry("500x200")  # Establecer las dimensiones de la ventana
 
 # Etiqueta y campo de entrada para el nombre
 label_nombre = tk.Label(ventana, text="Nombre:")
