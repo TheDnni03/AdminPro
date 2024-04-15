@@ -1,83 +1,31 @@
-import tkinter as tk
-from PIL import Image, ImageTk  # Importar desde el módulo PIL
-import subprocess
-
-# Variable global para almacenar el usuario seleccionado
-usuario_seleccionado = None
-
-def seleccionar_usuario(usuario):
-    global usuario_seleccionado
-    usuario_seleccionado = usuario
-    if usuario == "Empleado":
-        subprocess.Popen(["python", "RegEmpleado.py"])
-    elif usuario == "Encargado":
-        subprocess.Popen(["python", "RegEncargado.py"])
-
+from tkinter import Tk, Label
+from PIL import Image, ImageTk
+from customtkinter import *
 # Crear la ventana principal
-ventana = tk.Tk()
-ventana.title("Inicio")  # Cambiar el título de la ventana a "Inicio"
-ventana.geometry("500x300")  # Establecer el tamaño de la ventana a 300x300
+root = CTk()
+root.title("Interfaz con Imágenes y Texto")
 
-# Crear un contenedor para las imágenes y textos
-contenedor_imagenes = tk.Frame(ventana)
-contenedor_imagenes.pack()
+# Cargar las imágenes
+imagen_empleado = Image.open("Empleado.png")
+imagen_empleado = imagen_empleado.resize((200, 200))
+imagen_empleado = ImageTk.PhotoImage(imagen_empleado)
 
-# Espacio en blanco en la parte superior del contenedor
-espacio_superior = tk.Label(contenedor_imagenes, height=4)
-espacio_superior.pack()
+imagen_encargado = Image.open("Encargado.png")
+imagen_encargado = imagen_encargado.resize((200, 200))
+imagen_encargado = ImageTk.PhotoImage(imagen_encargado)
 
-# Crear un frame para la primera imagen y texto
-frame_imagen_texto1 = tk.Frame(contenedor_imagenes)
-frame_imagen_texto1.pack(side=tk.LEFT, padx=20)  # Añadir un espacio entre los frames
+# Crear etiquetas para mostrar las imágenes
+label_empleado = Label(root, image=imagen_empleado)
+label_encargado = Label(root, image=imagen_encargado)
 
-# Cargar la primera imagen
-imagen1 = Image.open("Empleado.png")  # Cambia "Empleado.png" por la ruta de tu primera imagen
-imagen1 = imagen1.resize((100, 100))  # Redimensionar la imagen según sea necesario
-imagen_tk1 = ImageTk.PhotoImage(imagen1)
+# Crear etiquetas de texto para empleado y encargado
+texto_empleado = Label(root, text="Empleado", font=("Arial", 12))
+texto_encargado = Label(root, text="Encargado", font=("Arial", 12))
 
-# Mostrar la primera imagen en un widget Label
-label_imagen1 = tk.Label(frame_imagen_texto1, image=imagen_tk1)
-label_imagen1.pack()
+# Colocar las etiquetas en la ventana
+label_empleado.grid(row=0, column=0, padx=10, pady=10)
+label_encargado.grid(row=0, column=1, padx=10, pady=10)
+texto_empleado.grid(row=1, column=0)
+texto_encargado.grid(row=1, column=1)
 
-# Guardar una referencia a la primera imagen para evitar que sea eliminada por el recolector de basura
-label_imagen1.image = imagen_tk1
-
-# Agregar un texto debajo de la primera imagen
-label_texto1 = tk.Label(frame_imagen_texto1, text="Empleado")
-label_texto1.pack()
-
-# Vincular la función seleccionar_usuario con clic en la imagen 1
-label_imagen1.bind("<Button-1>", lambda event: seleccionar_usuario("Empleado"))
-
-# Crear un espacio entre las imágenes
-espacio = tk.Label(contenedor_imagenes, width=10)
-espacio.pack(side=tk.LEFT)
-
-# Crear un frame para la segunda imagen y texto
-frame_imagen_texto2 = tk.Frame(contenedor_imagenes)
-frame_imagen_texto2.pack(side=tk.LEFT, padx=20)  # Añadir un espacio entre los frames
-
-# Cargar la segunda imagen
-imagen2 = Image.open("Encargado.png")  # Cambia "Encargado.png" por la ruta de tu segunda imagen
-imagen2 = imagen2.resize((100, 100))  # Redimensionar la imagen según sea necesario
-imagen_tk2 = ImageTk.PhotoImage(imagen2)
-
-# Mostrar la segunda imagen en un widget Label
-label_imagen2 = tk.Label(frame_imagen_texto2, image=imagen_tk2)
-label_imagen2.pack()
-
-# Guardar una referencia a la segunda imagen para evitar que sea eliminada por el recolector de basura
-label_imagen2.image = imagen_tk2
-
-# Agregar un texto debajo de la segunda imagen
-label_texto2 = tk.Label(frame_imagen_texto2, text="Encargado")
-label_texto2.pack()
-
-# Vincular la función seleccionar_usuario con clic en la imagen 2
-label_imagen2.bind("<Button-1>", lambda event: seleccionar_usuario("Encargado"))
-
-# Iniciar el bucle de eventos principal
-ventana.mainloop()
-
-# Imprimir el usuario seleccionado después de cerrar la ventana
-print("Usuario seleccionado:", usuario_seleccionado)
+root.mainloop()
