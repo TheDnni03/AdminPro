@@ -1,5 +1,6 @@
 import tkinter as tk
-from PIL import Image, ImageTk  
+from PIL import Image, ImageTk 
+import psycopg2
 import subprocess
 
 usuario_seleccionado = None
@@ -62,4 +63,3 @@ label_imagen2.bind("<Button-1>", lambda event: seleccionar_usuario("Encargado"))
 
 ventana.mainloop()
 
-print("Usuario seleccionado:", usuario_seleccionado)

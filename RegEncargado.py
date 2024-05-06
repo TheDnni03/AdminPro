@@ -1,31 +1,33 @@
 import tkinter as tk
+import os
 import psycopg2
+from Conexion import conectar_bd  # Importar la función conectar_bd desde el módulo Conexion.py
 
 def verificar_usuario():
     # Obtener los datos ingresados por el usuario
     nombre = entry_nombre.get()
     contraseña = entry_contraseña.get()
-    # Conectar a la base de datos
-    try:
-        conexion = psycopg2.connect(
-            dbname="almacen",
-            user="postgres",
-            password="D11Z08V03",
-            host="localhost",
-            port="5432"
-        )
-        cursor = conexion.cursor()
-        # Consulta para verificar el usuario en la base de datos
-        cursor.execute("SELECT * FROM Usuarios WHERE Nombre = %s AND Password = %s", (nombre, contraseña))
-        resultado = cursor.fetchone()  # Obtener el primer resultado
-        if resultado:
-            label_resultado.config(text="Usuario encontrado en la base de datos.")
-        else:
-            label_resultado.config(text="Usuario no encontrado en la base de datos.")
-        conexion.close()
-    except psycopg2.Error as error:
-        print("Error al conectar a la base de datos:", error)
-        label_resultado.config(text="Error al conectar a la base de datos.")
+    # Conectar a la base de datos utilizando la función importada
+    conexion = conectar_bd()
+    if conexion:
+        try:
+            cursor = conexion.cursor()
+            # Consulta para verificar el usuario en la base de datos
+            cursor.execute("SELECT * FROM Usuarios WHERE Nombre = %s AND Password = %s", (nombre, contraseña))
+            resultado = cursor.fetchone()  # Obtener el primer resultado
+            if resultado:
+                label_resultado.config(text="Usuario encontrado en la base de datos.")
+                # Cerrar la ventana actual
+                ventana.destroy()
+                # Abrir la ventana del empleado
+                os.system("python VentanaEncargado.py")
+            else:
+                label_resultado.config(text="Usuario no encontrado en la base de datos.")
+        except psycopg2.Error as error:
+            print("Error al conectar a la base de datos:", error)
+            label_resultado.config(text="Error al conectar a la base de datos.")
+        finally:
+            conexion.close()
 
 # Crear la ventana
 ventana = tk.Tk()
