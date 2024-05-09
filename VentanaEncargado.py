@@ -1,5 +1,6 @@
 import tkinter as tk
 import os
+from Conexion import conectar_bd
 
 def ver_inventario():
     # Aquí puedes agregar la funcionalidad para ver el inventario

@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import psycopg2
 from ttkthemes import ThemedStyle
+from Conexion import conectar_bd
 
 def insertar_datos():
     nombre = entry_nombre.get()
