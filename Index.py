@@ -12,14 +12,20 @@ def seleccionar_usuario(usuario):
         subprocess.Popen(["python", "RegEmpleado.py"])
     elif usuario == "Encargado":
         subprocess.Popen(["python", "RegEncargado.py"])
-    ventana.destroy()  # Destruir la ventana principal después de abrir la siguiente ventana
+    ventana.destroy()
 
 ventana = tk.Tk()
 ventana.title("Inicio")
-ventana.geometry("500x300")
+
+ancho_pantalla = ventana.winfo_screenwidth()
+alto_pantalla = ventana.winfo_screenheight()
+
+# Configurar la ventana para que ocupe toda la pantalla
+ventana.geometry(f"{ancho_pantalla}x{alto_pantalla}")
+ventana.attributes('-topmost', True)
 
 contenedor_imagenes = tk.Frame(ventana)
-contenedor_imagenes.pack()
+contenedor_imagenes.pack(expand=True)
 
 espacio_superior = tk.Label(contenedor_imagenes, height=4)
 espacio_superior.pack()
@@ -62,4 +68,3 @@ label_texto2.pack()
 label_imagen2.bind("<Button-1>", lambda event: seleccionar_usuario("Encargado"))
 
 ventana.mainloop()
-
