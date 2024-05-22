@@ -11,7 +11,7 @@ def insertar_datos():
     apellido_paterno = entry_apellido_paterno.get()
     apellido_materno = entry_apellido_materno.get()
     password = entry_password.get()
-    rol = 1  # Puedes ajustar esto según la lógica de tu aplicación
+    rol = 1
 
     try:
         conexion = conectar_bd()
@@ -62,5 +62,4 @@ entry_password.grid(row=4, column=1, padx=10, pady=5)
 
 btn_insertar = ttk.Button(ventana, text="Insertar Datos", command=insertar_datos)
 btn_insertar.grid(row=5, columnspan=2, padx=10, pady=10)
-
 ventana.mainloop()

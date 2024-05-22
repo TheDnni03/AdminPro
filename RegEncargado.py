@@ -13,7 +13,7 @@ def verificar_usuario():
         try:
             cursor = conexion.cursor()
             # Consulta para verificar el usuario en la base de datos
-            cursor.execute("SELECT * FROM Usuarios WHERE Nombre = %s AND Password = %s", (nombre, contraseña))
+            cursor.execute("SELECT * FROM Usuario WHERE Usuario = %s AND Password = %s", (nombre, contraseña))
             resultado = cursor.fetchone()  # Obtener el primer resultado
             if resultado:
                 label_resultado.config(text="Usuario encontrado en la base de datos.")

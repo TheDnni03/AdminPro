@@ -1,12 +1,14 @@
 import tkinter as tk
 import os
 from Conexion import conectar_bd
+from NuevosUsuarios import agregar_usuario
 
 def ver_inventario():
     # Aquí puedes agregar la funcionalidad para ver el inventario
     pass
 
 def agregar_empleado():
+    agregar_usuario()
     # Aquí puedes agregar la funcionalidad para agregar un producto
     pass
 
