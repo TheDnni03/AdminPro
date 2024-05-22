@@ -87,20 +87,18 @@ tk.Button(ventana_principal, text="Agregar Producto", command=ventana_agregar_pr
 tk.Button(ventana_principal, text="Eliminar Producto", command=ventana_eliminar_producto).pack()
 tk.Button(ventana_principal, text="SALIR", command=salir).pack()
 
-tree_inventario = ttk.Treeview(ventana_principal, columns=("ID", "Nombre", "Descripción", "Unidades", "Fecha_Ingreso", "ID_Emp"), show="headings")
+tree_inventario = ttk.Treeview(ventana_principal, columns=("ID", "Nombre", "Descripción", "Unidades", "Fecha_Ingreso"), show="headings")
 tree_inventario.heading("ID", text="ID")
 tree_inventario.heading("Nombre", text="Nombre")
 tree_inventario.heading("Descripción", text="Descripción")
 tree_inventario.heading("Unidades", text="Unidades")
 tree_inventario.heading("Fecha_Ingreso", text="Fecha de Ingreso")
-tree_inventario.heading("ID_Emp", text="ID Empleado")
 
 tree_inventario.column("ID", width=50)
 tree_inventario.column("Nombre", width=100)
 tree_inventario.column("Descripción", width=150)
 tree_inventario.column("Unidades", width=70)
 tree_inventario.column("Fecha_Ingreso", width=200)
-tree_inventario.column("ID_Emp", width=80)
 
 tree_inventario.pack()
 
