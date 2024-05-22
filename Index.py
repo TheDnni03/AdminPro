@@ -14,7 +14,7 @@ def seleccionar_usuario(usuario):
 ventana = tk.Tk()
 ventana.title("Inicio")
 
-ventana.geometry("500x300")
+ventana.geometry("800x400")
 
 contenedor_imagenes = tk.Frame(ventana)
 contenedor_imagenes.pack(expand=True)
