@@ -3,7 +3,7 @@ import psycopg2
 def conectar_bd():
     try:
         conexion = psycopg2.connect(
-            dbname="almacen",
+            dbname="Almacen",
             user="postgres",
             password="D11Z08V03",
             host="localhost",
