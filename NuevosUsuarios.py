@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 import psycopg2
-from ttkthemes import ThemedStyle
 from Conexion import conectar_bd
 
 def insertar_datos():
@@ -32,9 +31,7 @@ ventana = tk.Tk()
 ventana.title("Interfaz de Inserción de Datos")
 ventana.geometry('300x300')
 
-style = ThemedStyle(ventana)
-style.set_theme("plastik")
-
+# Eliminar ttkthemes y usar ttk directamente
 label_usuario = ttk.Label(ventana, text="Usuario:")
 label_usuario.grid(row=0, column=0, padx=10, pady=5, sticky=tk.E)
 entry_usuario = ttk.Entry(ventana)
@@ -62,4 +59,5 @@ entry_password.grid(row=4, column=1, padx=10, pady=5)
 
 btn_insertar = ttk.Button(ventana, text="Insertar Datos", command=insertar_datos)
 btn_insertar.grid(row=5, columnspan=2, padx=10, pady=10)
+
 ventana.mainloop()

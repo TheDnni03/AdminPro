@@ -1,12 +1,10 @@
-# main.py
 import tkinter as tk
 import os
 import psycopg2
 from tkinter import ttk
 from tkinter import messagebox
-from ttkthemes import ThemedStyle
 from Funciones import ver_inventario, agregar_producto, eliminar_producto
-from Conexion import conectar_bd  # Asegúrate de tener este módulo para la conexión a la BD
+from Conexion import conectar_bd
 
 def mostrar_inventario():
     resultados = ver_inventario()
@@ -46,9 +44,6 @@ def ventana_agregar_producto():
     ventana = tk.Toplevel(ventana_principal)
     ventana.title("Agregar Producto")
     ventana.geometry('300x300')
-
-    style = ThemedStyle(ventana)
-    style.set_theme("plastik")
 
     ttk.Label(ventana, text="Usuario:").grid(row=0, column=0, padx=10, pady=5, sticky=tk.E)
     entry_usuario = ttk.Entry(ventana)
@@ -96,14 +91,13 @@ def salir():
 
 ventana_principal = tk.Tk()
 ventana_principal.title("Interfaz gráfica")
-ventana_principal.geometry("600x400")
+ventana_principal.geometry("800x400")
 
 tk.Button(ventana_principal, text="Ver Inventario", command=mostrar_inventario).pack()
 tk.Button(ventana_principal, text="Nuevo empleado", command=ventana_agregar_producto).pack()
 tk.Button(ventana_principal, text="Eliminar Producto", command=ventana_eliminar_producto).pack()
 tk.Button(ventana_principal, text="SALIR", command=salir).pack()
 
-# Crear el Treeview para mostrar el inventario
 tree_inventario = ttk.Treeview(ventana_principal, columns=("ID", "Nombre", "Descripción", "Unidades", "Fecha_Ingreso"), show="headings")
 tree_inventario.heading("ID", text="ID")
 tree_inventario.heading("Nombre", text="Nombre")
@@ -111,7 +105,6 @@ tree_inventario.heading("Descripción", text="Descripción")
 tree_inventario.heading("Unidades", text="Unidades")
 tree_inventario.heading("Fecha_Ingreso", text="Fecha de Ingreso")
 
-# Ajustar el tamaño de las columnas
 tree_inventario.column("ID", width=50)
 tree_inventario.column("Nombre", width=100)
 tree_inventario.column("Descripción", width=150)
