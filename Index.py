@@ -1,9 +1,6 @@
 import tkinter as tk
-from PIL import Image, ImageTk 
-import psycopg2
+from PIL import Image, ImageTk
 import subprocess
-
-usuario_seleccionado = None
 
 def seleccionar_usuario(usuario):
     global usuario_seleccionado
@@ -17,12 +14,7 @@ def seleccionar_usuario(usuario):
 ventana = tk.Tk()
 ventana.title("Inicio")
 
-ancho_pantalla = ventana.winfo_screenwidth()
-alto_pantalla = ventana.winfo_screenheight()
-
-# Configurar la ventana para que ocupe toda la pantalla
-ventana.geometry(f"{ancho_pantalla}x{alto_pantalla}")
-ventana.attributes('-topmost', True)
+ventana.geometry("500x300")
 
 contenedor_imagenes = tk.Frame(ventana)
 contenedor_imagenes.pack(expand=True)
@@ -31,16 +23,14 @@ espacio_superior = tk.Label(contenedor_imagenes, height=4)
 espacio_superior.pack()
 
 frame_imagen_texto1 = tk.Frame(contenedor_imagenes)
-frame_imagen_texto1.pack(side=tk.LEFT, padx=20)  
+frame_imagen_texto1.pack(side=tk.LEFT, padx=20)
 
 imagen1 = Image.open("Empleado.png")
-imagen1 = imagen1.resize((100, 100))  
+imagen1 = imagen1.resize((100, 100))
 imagen_tk1 = ImageTk.PhotoImage(imagen1)
 
 label_imagen1 = tk.Label(frame_imagen_texto1, image=imagen_tk1)
 label_imagen1.pack()
-
-label_imagen1.image = imagen_tk1
 
 label_texto1 = tk.Label(frame_imagen_texto1, text="Empleado")
 label_texto1.pack()
@@ -51,16 +41,14 @@ espacio = tk.Label(contenedor_imagenes, width=10)
 espacio.pack(side=tk.LEFT)
 
 frame_imagen_texto2 = tk.Frame(contenedor_imagenes)
-frame_imagen_texto2.pack(side=tk.LEFT, padx=20)  
+frame_imagen_texto2.pack(side=tk.LEFT, padx=20)
 
 imagen2 = Image.open("Encargado.png")
-imagen2 = imagen2.resize((100, 100))  
+imagen2 = imagen2.resize((100, 100))
 imagen_tk2 = ImageTk.PhotoImage(imagen2)
 
 label_imagen2 = tk.Label(frame_imagen_texto2, image=imagen_tk2)
 label_imagen2.pack()
-
-label_imagen2.image = imagen_tk2
 
 label_texto2 = tk.Label(frame_imagen_texto2, text="Encargado")
 label_texto2.pack()

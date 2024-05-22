@@ -1,15 +1,18 @@
 import tkinter as tk
+from tkinter import ttk
 import os
 from Funciones import ver_inventario, agregar_producto, eliminar_producto
 
 def mostrar_inventario():
     resultados = ver_inventario()
+    for item in tree_inventario.get_children():
+        tree_inventario.delete(item)
+    
     if resultados is not None:
-        texto_inventario.delete("1.0", tk.END)
         for resultado in resultados:
-            texto_inventario.insert(tk.END, str(resultado) + "\n")
+            tree_inventario.insert("", tk.END, values=resultado)
     else:
-        texto_inventario.insert(tk.END, "Error al conectar a la base de datos.\n")
+        print("Error al conectar a la base de datos.")
 
 def ventana_agregar_producto():
     def agregar():
@@ -77,14 +80,28 @@ def salir():
 
 ventana_principal = tk.Tk()
 ventana_principal.title("Interfaz gráfica")
-ventana_principal.geometry("500x300")
+ventana_principal.geometry("800x400")
 
 tk.Button(ventana_principal, text="Ver Inventario", command=mostrar_inventario).pack()
 tk.Button(ventana_principal, text="Agregar Producto", command=ventana_agregar_producto).pack()
 tk.Button(ventana_principal, text="Eliminar Producto", command=ventana_eliminar_producto).pack()
 tk.Button(ventana_principal, text="SALIR", command=salir).pack()
 
-texto_inventario = tk.Text(ventana_principal, height=10, width=50)
-texto_inventario.pack()
+tree_inventario = ttk.Treeview(ventana_principal, columns=("ID", "Nombre", "Descripción", "Unidades", "Fecha_Ingreso", "ID_Emp"), show="headings")
+tree_inventario.heading("ID", text="ID")
+tree_inventario.heading("Nombre", text="Nombre")
+tree_inventario.heading("Descripción", text="Descripción")
+tree_inventario.heading("Unidades", text="Unidades")
+tree_inventario.heading("Fecha_Ingreso", text="Fecha de Ingreso")
+tree_inventario.heading("ID_Emp", text="ID Empleado")
+
+tree_inventario.column("ID", width=50)
+tree_inventario.column("Nombre", width=100)
+tree_inventario.column("Descripción", width=150)
+tree_inventario.column("Unidades", width=70)
+tree_inventario.column("Fecha_Ingreso", width=200)
+tree_inventario.column("ID_Emp", width=80)
+
+tree_inventario.pack()
 
 ventana_principal.mainloop()
